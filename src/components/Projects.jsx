@@ -1,25 +1,25 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Rocket, Brain, Code } from 'lucide-react';
+import { Rocket, Code, Cpu } from 'lucide-react';
 
 const projects = [
   {
-    title: 'SanskritiVision: Cultural Landmark Classifier',
-    icon: <Brain className="h-5 w-5 text-emerald-600" />,
-    desc: 'CNN-based model to classify Indian monuments (Taj Mahal, Hampi, Qutub Minar) with Grad-CAM visualizations.',
-    tags: ['PyTorch', 'FastAPI', 'Grad-CAM', 'MLOps'],
+    title: 'Vision Studio',
+    icon: <Rocket className="h-5 w-5 text-emerald-400" />,
+    desc: 'Realtime image understanding playground with custom CNN backends and WebGPU shaders.',
+    tags: ['PyTorch', 'WebGPU', 'FastAPI', 'Sockets'],
   },
   {
-    title: 'RagaRec: Indian Classical Music Recommender',
-    icon: <Rocket className="h-5 w-5 text-orange-600" />,
-    desc: 'Hybrid system using MF + spectral features to suggest ragas based on mood and time of day.',
-    tags: ['Python', 'Pandas', 'Signal Processing', 'Recsys'],
+    title: 'Insight Dash',
+    icon: <Code className="h-5 w-5 text-cyan-400" />,
+    desc: 'Self-serve analytics with a semantic layer and natural-language query interface.',
+    tags: ['LangChain', 'MongoDB', 'React', 'D3'],
   },
   {
-    title: 'AyurInsight: NLP on Ayurvedic Texts',
-    icon: <Code className="h-5 w-5 text-rose-600" />,
-    desc: 'NER and Q&A pipeline over digitized texts to retrieve remedies and ingredients with confidence scores.',
-    tags: ['Transformers', 'spaCy', 'Vector DB', 'QA'],
+    title: 'LiteML',
+    icon: <Cpu className="h-5 w-5 text-indigo-400" />,
+    desc: 'Tiny ML toolkit focused on deployability—quantization, pruning, and on-device inference.',
+    tags: ['ONNX', 'TensorRT', 'C++', 'Python'],
   },
 ];
 
@@ -32,12 +32,8 @@ const Projects = () => {
   return (
     <section id="projects" className="relative mx-auto mt-16 max-w-7xl px-6 sm:mt-24 sm:px-10">
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-          Featured Projects
-        </h2>
-        <p className="mt-2 text-slate-600">
-          A curated set of works blending AI, data science, and Indian cultural context.
-        </p>
+        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Featured Projects</h2>
+        <p className="mt-2 text-white/60">Selected work that balances research depth with product polish.</p>
       </div>
 
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -49,18 +45,17 @@ const Projects = () => {
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
             variants={cardVariants}
-            className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
+            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur transition-transform duration-300 hover:-translate-y-1"
           >
-            {/* Tricolor accent */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 via-white to-emerald-600" />
+            <div className="absolute -right-10 -top-10 h-36 w-36 rotate-12 rounded-full bg-gradient-to-br from-emerald-400/10 via-cyan-400/10 to-indigo-400/10 blur-2xl transition-all duration-500 group-hover:scale-150" />
 
             <div className="flex items-start gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-50 ring-1 ring-slate-200">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10">
                 {p.icon}
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-slate-900">{p.title}</h3>
-                <p className="mt-1 text-sm text-slate-600">{p.desc}</p>
+                <h3 className="text-lg font-semibold text-white">{p.title}</h3>
+                <p className="mt-1 text-sm text-white/70">{p.desc}</p>
               </div>
             </div>
 
@@ -68,14 +63,12 @@ const Projects = () => {
               {p.tags.map((t) => (
                 <span
                   key={t}
-                  className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs text-slate-600"
+                  className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/70"
                 >
                   {t}
                 </span>
               ))}
             </div>
-
-            <div className="absolute -right-10 -top-10 h-36 w-36 rotate-12 rounded-full bg-gradient-to-br from-orange-500/10 via-rose-400/10 to-emerald-500/10 blur-2xl transition-all duration-500 group-hover:scale-150" />
           </motion.div>
         ))}
       </div>
