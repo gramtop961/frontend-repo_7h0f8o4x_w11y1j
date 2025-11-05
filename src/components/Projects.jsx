@@ -1,79 +1,96 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Rocket, Code, Cpu } from 'lucide-react';
+import { ArrowRight, Code2, Cpu, Star } from 'lucide-react';
 
 const projects = [
   {
-    title: 'Vision Studio',
-    icon: <Rocket className="h-5 w-5 text-emerald-400" />,
-    desc: 'Realtime image understanding playground with custom CNN backends and WebGPU shaders.',
-    tags: ['PyTorch', 'WebGPU', 'FastAPI', 'Sockets'],
+    title: 'Neon UI Kit',
+    description: 'A component library with motion-first patterns and dark, neon accents.',
+    tags: ['React', 'Tailwind', 'Framer Motion'],
+    icon: <Star className="h-5 w-5 text-yellow-400" />,
+    link: '#',
   },
   {
-    title: 'Insight Dash',
-    icon: <Code className="h-5 w-5 text-cyan-400" />,
-    desc: 'Self-serve analytics with a semantic layer and natural-language query interface.',
-    tags: ['LangChain', 'MongoDB', 'React', 'D3'],
+    title: '3D Product Teaser',
+    description: 'Interactive landing hero powered by Spline & WebGL transitions.',
+    tags: ['Spline', 'Three-ish', 'DX'],
+    icon: <Cpu className="h-5 w-5 text-cyan-400" />,
+    link: '#',
   },
   {
-    title: 'LiteML',
-    icon: <Cpu className="h-5 w-5 text-indigo-400" />,
-    desc: 'Tiny ML toolkit focused on deployability—quantization, pruning, and on-device inference.',
-    tags: ['ONNX', 'TensorRT', 'C++', 'Python'],
+    title: 'Dev Dashboard',
+    description: 'Analytics dashboard with snappy charts and keyboard-driven UX.',
+    tags: ['Vite', 'React', 'API'],
+    icon: <Code2 className="h-5 w-5 text-fuchsia-400" />,
+    link: '#',
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  show: (i) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08, duration: 0.6 } }),
-};
-
-const Projects = () => {
+export default function Projects() {
   return (
-    <section id="projects" className="relative mx-auto mt-16 max-w-7xl px-6 sm:mt-24 sm:px-10">
-      <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Featured Projects</h2>
-        <p className="mt-2 text-white/60">Selected work that balances research depth with product polish.</p>
-      </div>
-
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((p, idx) => (
-          <motion.div
-            key={p.title}
-            custom={idx}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={cardVariants}
-            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur transition-transform duration-300 hover:-translate-y-1"
+    <section id="projects" className="relative w-full bg-[#0b0d12] py-20 text-white">
+      <div className="mx-auto max-w-7xl px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7 }}
+          className="mb-10 flex items-end justify-between"
+        >
+          <div>
+            <h2 className="font-display text-3xl font-semibold md:text-4xl">Featured Projects</h2>
+            <p className="mt-2 max-w-2xl text-white/70">
+              A selection of interfaces and experiments focused on interactivity and craft.
+            </p>
+          </div>
+          <a
+            href="#contact"
+            className="hidden items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white backdrop-blur transition hover:border-white/25 hover:bg-white/10 md:inline-flex"
           >
-            <div className="absolute -right-10 -top-10 h-36 w-36 rotate-12 rounded-full bg-gradient-to-br from-emerald-400/10 via-cyan-400/10 to-indigo-400/10 blur-2xl transition-all duration-500 group-hover:scale-150" />
+            Get a demo
+            <ArrowRight className="h-4 w-4" />
+          </a>
+        </motion.div>
 
-            <div className="flex items-start gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10">
-                {p.icon}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {projects.map((p, i) => (
+            <motion.a
+              key={p.title}
+              href={p.link}
+              target="_blank"
+              rel="noreferrer"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: i * 0.05 }}
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.03] p-5 shadow-[0_6px_40px_-10px_rgba(0,0,0,0.4)]"
+            >
+              <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <div className="pointer-events-none absolute -inset-20 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12),transparent_60%)]" />
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-white">{p.title}</h3>
-                <p className="mt-1 text-sm text-white/70">{p.desc}</p>
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur">
+                  {p.icon}
+                </div>
+                <h3 className="text-lg font-semibold">{p.title}</h3>
               </div>
-            </div>
-
-            <div className="mt-4 flex flex-wrap gap-2">
-              {p.tags.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/70"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        ))}
+              <p className="text-sm text-white/70">{p.description}</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {p.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/80"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-5 inline-flex items-center gap-1 text-sm text-fuchsia-300 opacity-0 transition-opacity group-hover:opacity-100">
+                Explore <ArrowRight className="h-4 w-4" />
+              </div>
+            </motion.a>
+          ))}
+        </div>
       </div>
     </section>
   );
-};
-
-export default Projects;
+}

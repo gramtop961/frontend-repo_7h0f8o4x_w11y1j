@@ -1,63 +1,82 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import { ArrowRight, Rocket, Sparkles } from 'lucide-react';
 import Spline from '@splinetool/react-spline';
 
-const Hero = () => {
+export default function Hero() {
   return (
-    <section className="relative h-[92vh] w-full overflow-hidden rounded-3xl bg-[#0b0f14]">
-      {/* 3D Spline Scene */}
-      <div className="absolute inset-0">
+    <section id="home" className="relative min-h-[90vh] w-full overflow-hidden bg-[#0b0d12] text-white">
+      {/* 3D Scene */}
+      <div className="absolute inset-0 z-0">
         <Spline
           scene="https://prod.spline.design/VJLoxp84lCdVfdZu/scene.splinecode"
           style={{ width: '100%', height: '100%' }}
         />
       </div>
 
-      {/* Ambient gradients */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_40%_at_20%_20%,rgba(99,102,241,0.25),transparent),radial-gradient(50%_35%_at_80%_80%,rgba(34,197,94,0.22),transparent)]" />
+      {/* Ambient gradients (non-blocking for pointer events) */}
+      <div className="pointer-events-none absolute inset-0 z-10 mix-blend-screen">
+        <div className="absolute -top-24 -left-24 h-80 w-80 rounded-full bg-fuchsia-600/20 blur-3xl" />
+        <div className="absolute top-10 right-0 h-96 w-96 rounded-full bg-cyan-500/20 blur-3xl" />
+        <div className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-indigo-500/20 blur-3xl" />
+      </div>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 sm:px-10">
+      <div className="relative z-20 mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-center px-6 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="max-w-3xl backdrop-blur-[2px]"
+          transition={{ duration: 0.8 }}
+          className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-medium text-white/80">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-            Portfolio • AI + Design
-          </span>
+          <Sparkles className="h-4 w-4 text-fuchsia-400" />
+          <span className="text-sm text-white/80">Interactive 3D • Modern • Playful</span>
+        </motion.div>
 
-          <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-white sm:text-6xl">
-            Hi, I’m <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent">Your Name</span>
-          </h1>
-          <p className="mt-4 max-w-2xl text-base text-white/70 sm:text-lg">
-            I craft intelligent interfaces and data-driven products—blending machine learning, delightful UX, and clean engineering.
-          </p>
+        <motion.h1
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.1 }}
+          className="font-display text-4xl font-semibold leading-tight text-white md:text-6xl"
+        >
+          Crafting delightful experiences
+          <br />
+          in 3D and the web
+        </motion.h1>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <motion.a
-              whileHover={{ y: -2 }}
-              whileTap={{ y: 0 }}
-              href="#projects"
-              className="rounded-full bg-gradient-to-r from-emerald-500 to-indigo-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg/30 hover:shadow-xl"
-            >
-              View Projects
-            </motion.a>
-            <motion.a
-              whileHover={{ y: -2 }}
-              whileTap={{ y: 0 }}
-              href="#contact"
-              className="rounded-full border border-white/15 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white/90 backdrop-blur-md hover:bg-white/15"
-            >
-              Contact Me
-            </motion.a>
-          </div>
+        <motion.p
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.2 }}
+          className="mt-4 max-w-2xl text-balance text-base text-white/70 md:text-lg"
+        >
+          I design and build tech-forward interfaces that feel alive. Explore featured work, tools I love, and ways to connect.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.3 }}
+          className="mt-8 flex flex-col items-center gap-3 sm:flex-row"
+        >
+          <a
+            href="#projects"
+            className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-medium text-black shadow-lg shadow-white/10 transition hover:translate-y-[-1px] hover:bg-white/90"
+          >
+            <Rocket className="h-4 w-4" />
+            View Projects
+            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium text-white backdrop-blur transition hover:border-white/25 hover:bg-white/10"
+          >
+            Get in touch
+          </a>
         </motion.div>
       </div>
+
+      {/* Subtle bottom fade for readability */}
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-40 bg-gradient-to-t from-[#0b0d12] to-transparent" />
     </section>
   );
-};
-
-export default Hero;
+}
